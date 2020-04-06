@@ -1,0 +1,20 @@
+scene.my.autoforce := 0;
+postStep := (e)=>{
+    _trigger(0) ? {
+        _trigger(1) ? {
+            _acc = (vel - _oldvel) * sim.frequency;
+            _acc(1) >= 0 ? {
+                _trigger = [false, false]
+            } : {
+                scene.my.autoforce = scene.my.autoforce + 1000
+            }
+        } : {
+            scene.my.autoforce = 0;
+            _trigger = [_trigger(0), true]
+        }
+    } : {};
+    _oldvel = vel
+};_acc := [0,0];
+_oldvel := [0,0];
+_trigger := [false,false];
+inertiaMultiplier := +inf;
