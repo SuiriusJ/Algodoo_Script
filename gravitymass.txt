@@ -1,3 +1,7 @@
+/*
+just copy and paste in the console of target object
+*/
+
 scene.my.autoforce := 0;
 postStep := (e)=>{
     _trigger(0) ? {
