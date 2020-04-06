@@ -14,11 +14,13 @@ postStep := (e)=>{
             }
         } : {
             scene.my.autoforce = 0;
-            _trigger = [_trigger(0), true]
+            _trigger = [_trigger(0), true];
+            _mass = autoforce / sim.gravityStrength;
         }
     } : {};
     _oldvel = vel
 };_acc := [0,0];
 _oldvel := [0,0];
-_trigger := [false,false];
+_trigger := [true,false];
+_mass := 10;
 inertiaMultiplier := +inf;
