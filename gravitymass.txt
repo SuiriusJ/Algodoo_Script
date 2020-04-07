@@ -42,6 +42,6 @@ _timer := 2;
 _TenExp := 3;
 _acc := [0,0];
 _oldvel := [0,0];
-_trigger := [true,false];
+_trigger := 0;
 _mass := 10;
 inertiaMultiplier := +inf;
