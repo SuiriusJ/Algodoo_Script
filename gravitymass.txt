@@ -1,25 +1,46 @@
 /*
 just copy and paste in the console of target object
 */
-
 scene.my.autoforce := 0;
 postStep := (e)=>{
-    _trigger(0) ? {
-        _trigger(1) ? {
-            _acc = (vel - _oldvel) * sim.frequency;
-            _acc(1) >= 0 ? {
-                _trigger = [false, false]
-            } : {
-                scene.my.autoforce = scene.my.autoforce + 1000
-            }
-        } : {
-            scene.my.autoforce = 0;
-            _trigger = [_trigger(0), true];
-            _mass = autoforce / sim.gravityStrength;
-        }
-    } : {};
+    _trigger == 1 ? {
+        scene.my.autoforce = 0;
+        _TimerSet({
+            _timer = 2;
+            _trigger = 2;
+            _TenExp = 3
+        })
+    } : {
+        _trigger == 2 ? {
+            _TimerSet({
+                _timer = 2;
+                _acc(1) > 0 ? {
+                    _TenExp == -2 ? {
+                        _trigger = 0
+                    } : {
+                        scene.my.autoforce = scene.my.autoforce - (10 ^ _TenExp);
+                        _TenExp = _TenExp - 1
+                    }
+                } : {
+                    scene.my.autoforce = scene.my.autoforce + (10 ^ _TenExp)
+                }
+            })
+        } : {}
+    };
+    _acc = (vel - _oldvel) * sim.frequency;
     _oldvel = vel
-};_acc := [0,0];
+};
+
+
+_TimerSet := (x)=>{
+    _timer <= 0 ? {x} : {
+        _timer = _timer - 1
+    }
+};
+
+_timer := 2;
+_TenExp := 3;
+_acc := [0,0];
 _oldvel := [0,0];
 _trigger := [true,false];
 _mass := 10;
