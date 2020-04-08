@@ -44,4 +44,6 @@ _acc := [0,0];
 _oldvel := [0,0];
 _trigger := 0;
 _mass := 10;
+/* Option
 inertiaMultiplier := +inf;
+*/
