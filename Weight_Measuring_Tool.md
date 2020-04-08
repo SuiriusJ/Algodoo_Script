@@ -80,7 +80,7 @@ Warning: Airplanes using airfoils may not be measurable.
         }
     }
 
-## Algorithm description
+## Algorithm Description
 
     1. Set the external force of the aircraft to zero, and reset the acceleration of the aircraft to gravity acceleration.
 
@@ -91,7 +91,7 @@ Warning: Airplanes using airfoils may not be measurable.
     4. In this way, add 10, 1, 0.1, 0.01, and calculate up to 0.01 to complete the weight measurement.
 
 
-## 커스텀 변수에 대한 설명
+## Custom Variables & Functions Description
 
     * scene.my.autoforce: The size of the force to be delivered to the thruster
 
@@ -102,7 +102,9 @@ Warning: Airplanes using airfoils may not be measurable.
     * _TenExp: When calculating forces, the value added to the force
 
     * _timer: Delay
+    
+    * _SetTimer: Alternative to "Sleep();."
 
-    * _trigger: Phase
+    * _trigger: Trigger and Phase
     
     * _mass: Originally used to calculate mass, but not used now.
