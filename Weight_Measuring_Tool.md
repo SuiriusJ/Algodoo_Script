@@ -6,6 +6,18 @@ This script can be used to measure the weight of aircrafts, such as airships and
 
 Warning: Airplanes using airfoils may not be measurable.
 
+https://github.com/SuiriusJ/Algodoo_Script/blob/master/gravitymass.txt
+
+## How to use
+
+    1. paste the Codes in gravitymass.txt into the console line of your object.
+    
+    (Only Circle, Box or Polygon: THE OBJECT MUST BE ATTACHED TO YOUR AIRCRAFT)
+    
+    2. Set force value of your Thruster with {scene.my.autoforce}, or add "force = scene.my.autoforce" in postStep.
+    
+    3. If you want to activate this script, Set '_trigger' with 1 of your object.
+
 ## Raw Code
 
     postStep := (e)=>{
