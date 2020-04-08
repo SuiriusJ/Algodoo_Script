@@ -2,11 +2,11 @@ Weight Measuring Tool (By SuiriusJ)
 =======================
 ## Description
 
-이 스크립트는 비행선이나 공중모함 등, 비행 기구의 무게를 측정하는 데 사용할 수 있습니다.
+This script can be used to measure the weight of aircrafts, such as airships and air carriers.
 
-경고: 에어포일을 사용하는 비행기는 측정이 불가능할 수 있습니다.
+Warning: Airplanes using airfoils may not be measurable.
 
-## 전체 알고리즘
+## Raw Code
 
     postStep := (e)=>{
         _trigger == 1 ? {
@@ -44,7 +44,7 @@ Weight Measuring Tool (By SuiriusJ)
         }
     };
 
-## 의사코드
+## Pseudo-code
 
     postStep := (e)=>{
         if trigger is:
@@ -80,29 +80,29 @@ Weight Measuring Tool (By SuiriusJ)
         }
     }
 
-## 알고리즘 설명
+## Algorithm description
 
-    1. 비행 기구의 외력을 0으로 설정해, 비행기구의 가속도를 중력가속도로 초기화한다.
+    1. Set the external force of the aircraft to zero, and reset the acceleration of the aircraft to gravity acceleration.
 
-    2. 외력에 차례로 1000을 계속 더해간다.
+    2. Continue adding 1000 to external forces in turn.
 
-    3. 만약 알짜힘이 위로 작용할 경우, 바로 전 작업을 취소하고, 이번에는 100을 계속 더해간다.
+    3. If the power is working up, cancel the operation immediately before, and this time it will continue to add 100.
 
-    4. 이러한 방식으로 10, 1, 0.1, 0.01을 더해가고, 0.01까지 계산하면 무게 측정을 끝낸다.
+    4. In this way, add 10, 1, 0.1, 0.01, and calculate up to 0.01 to complete the weight measurement.
 
 
 ## 커스텀 변수에 대한 설명
 
-    * scene.my.autoforce: 추진체에 전달하는 힘의 크기
+    * scene.my.autoforce: The size of the force to be delivered to the thruster
 
-    * _oldvel: 가속도를 계산하기 위해 한 틱 전의 vel값을 저장한다.
+    * _oldvel: It is used to store the vel value before one tick to calculate the acceleration.
     
-    * _acc: 가속도
+    * _acc: Acceleration
 
-    * _TenExp: 힘을 계산할 때의 10의 지수
+    * _TenExp: When calculating forces, the value added to the force
 
-    * _timer: 딜레이
+    * _timer: Delay
 
-    * _trigger: phase
+    * _trigger: Phase
     
-    * _mass: 원래 질량을 계산하기 위해 사용되었지만, 지금은 사용하지 않음.
+    * _mass: Originally used to calculate mass, but not used now.
