@@ -1,0 +1,94 @@
+// FileVersion 21
+// Phunlet created by Algodoo v2.1.0
+
+FileInfo -> {
+    title = "Script - Angle of Attack";
+    author = "SIRIUS";
+    version = 21
+};
+Scene.addBox {
+    inertiaMultiplier := 1.0000000;
+    resources := [];
+    timeToLive := +inf;
+    textureClamped := [false, false];
+    adhesion := 0.00000000;
+    attractionType := 2;
+    attraction := 0.00000000;
+    textScale := 0.29989457;
+    texture := "steel.png";
+    update := (e)=>{};
+    controllerInvertX := false;
+    controllerInvertY := false;
+    showMomentum := false;
+    textConstrained := true;
+    vel := [-47.756897, -3.7898927];
+    restitution := 0.75000000;
+    onCollide := (e)=>{};
+    killer := false;
+    materialVelocity := 0.00000000;
+    showForceArrows := false;
+    _AirFriction := {
+        (size(1) * Sim.airFrictionMultiplier * ((_AirFrictionVar * Sim.AirFrictionLinear) + (_AirFrictionVarAng(_AirFrictionVar) * Sim.airFrictionQuadratic * (_AirFrictionVar) ^ 2))) * _AirFrictionVar2
+    };
+    _AirFrictionAng := {
+        (-1 * size(1) / 2 * Sim.airFrictionMultiplier * ((angvel * Sim.AirFrictionLinear) + (_AirFrictionVarAng(angvel) * Sim.airFrictionQuadratic * ((angvel) ^ 2))))
+    };
+    controllerReverseXY := false;
+    refractiveIndex := 1.5000000;
+    textureMatrix := [-0.28812504, -4.9528949e-006, 1.5982494e-006, 5.9959421e-013, 0.78000027, 1.3250115e-006, 0.00000000, 0.00000000, 0.99999982];
+    immortal := false;
+    ruler := false;
+    textColor := [1.0000000, 1.0000000, 1.0000000, 1.0000000];
+    area := 1.0000000;
+    collideSet := 0;
+    drawBorder := true;
+    reflectiveness := 1.0000000;
+    size := [15.999997, 0.49999961];
+    friction := 0.74000001;
+    entityID := 9129;
+    velocityDamping := [0.00000000, 0.00000000, 0.00000000];
+    _AirFrictionVar := {
+        (( - vel(0) * ( - sin(angle))) + ( - vel(1) * cos(angle)))
+    };
+    onClick := (e)=>{};
+    color := [0.75000000, 0.75000000, 0.32999998, 1.0000000];
+    collideWater := true;
+    onSpawn := (e)=>{};
+    materialName := "steel";
+    textFontSize := 32.000000;
+    onHitByLaser := (e)=>{};
+    textFont := "Verdana";
+    pos := [90.982277, 146.77440];
+    onDie := (e)=>{};
+    density := 2.7000000;
+    airFrictionMult := 0;
+    controllerAcc := 11.000000;
+    colorHSVA := [60.000000, 0.56000000, 0.75000000, 1.0000000];
+    _AirFrictionVar2 := {
+        ( - sin(angle), cos(angle))
+    };
+    angvel := -0.73297298;
+    heteroCollide := false;
+    glued := false;
+    onKey := (e)=>{};
+    showVelocity := false;
+    postStep := (e)=>{
+        vel = vel + (_AirFriction * 100 / (area * density));
+        angvel = angvel + _AirFrictionAng * 5
+    };
+    text := "AirFoil";
+    opaqueBorders := true;
+    geomID := 382020;
+    _AirFrictionVarAng := (x)=>{
+        x == 0 ? 0 : math.sqrt(x ^ 2) / x
+    };
+    body := 390712;
+    edgeBlur := 0.00000000;
+    angle := 0.029065013;
+    zDepth := 1.0000000;
+    layer := 0
+};
+Scene.addGroup {
+    name := "tracked";
+    entityIDs := [9129]
+}
