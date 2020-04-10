@@ -408,7 +408,8 @@ Scene.addBox {
                     _timer = 2;
                     _acc(1) > 0 ? {
                         _TenExp == -2 ? {
-                            _trigger = 0
+                            _trigger = 0;
+                            _weight = scene.my.autoforce
                         } : {
                             scene.my.autoforce = scene.my.autoforce - (10 ^ _TenExp);
                             _TenExp = _TenExp - 1
