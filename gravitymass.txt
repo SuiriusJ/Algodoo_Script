@@ -16,7 +16,8 @@ postStep := (e)=>{
                 _timer = 2;
                 _acc(1) > 0 ? {
                     _TenExp == -2 ? {
-                        _trigger = 0
+                        _trigger = 0;
+                        _weight = scene.my.autoforce
                     } : {
                         scene.my.autoforce = scene.my.autoforce - (10 ^ _TenExp);
                         _TenExp = _TenExp - 1
@@ -26,7 +27,7 @@ postStep := (e)=>{
                 }
             })
         } : {
-            _acc(1) > 0 ? {
+            vel(1) > 0 ? {
                 scene.my.autoforce = _weight * 9 / 10
             } : {
                 scene.my.autoforce = _weight * 11 / 10
