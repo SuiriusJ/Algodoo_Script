@@ -21,33 +21,40 @@ https://github.com/SuiriusJ/Algodoo_Script/blob/master/gravitymass.txt
 ## Raw Code
 
     postStep := (e)=>{
-        _trigger == 1 ? {
-            scene.my.autoforce = 0;
+    _trigger == 1 ? {
+        scene.my.autoforce = 0;
+        _TimerSet({
+            _timer = 2;
+            _trigger = 2;
+            _TenExp = 6
+        })
+    } : {
+        _trigger == 2 ? {
             _TimerSet({
                 _timer = 2;
-                _trigger = 2;
-                _TenExp = 3
+                _acc(1) > 0 ? {
+                    _TenExp == -2 ? {
+                        _trigger = 0;
+                        _weight = scene.my.autoforce
+                    } : {
+                        scene.my.autoforce = scene.my.autoforce - (10 ^ _TenExp);
+                        _TenExp = _TenExp - 1
+                    }
+                } : {
+                    scene.my.autoforce = scene.my.autoforce + (10 ^ _TenExp)
+                }
             })
         } : {
-            _trigger == 2 ? {
-                _TimerSet({
-                    _timer = 2;
-                    _acc(1) > 0 ? {
-                        _TenExp == -2 ? {
-                            _trigger = 0
-                        } : {
-                            scene.my.autoforce = scene.my.autoforce - (10 ^ _TenExp);
-                            _TenExp = _TenExp - 1
-                        }
-                    } : {
-                        scene.my.autoforce = scene.my.autoforce + (10 ^ _TenExp)
-                    }
-                })
-            } : {}
-        };
-        _acc = (vel - _oldvel) * sim.frequency;
-        _oldvel = vel
+            vel(1) > 0 ? {
+                scene.my.autoforce = _weight * 9 / 10
+            } : {
+                scene.my.autoforce = _weight * 11 / 10
+            }
+        }
     };
+    _acc = (vel - _oldvel) * sim.frequency;
+    _oldvel = vel
+};
 
 
     _TimerSet := (x)=>{
@@ -78,6 +85,7 @@ https://github.com/SuiriusJ/Algodoo_Script/blob/master/gravitymass.txt
                 if increasing is smaller than 0.01
                 {
                     trigger = 0;
+                    weight = Force
                     // Stop Measuring Weight
                 }
                 else
@@ -90,6 +98,16 @@ https://github.com/SuiriusJ/Algodoo_Script/blob/master/gravitymass.txt
                 Force += increasing
             }
         }
+        0:
+        if vel is bigger than 0
+        {
+            set force with 9/10 * Force
+        }
+        else
+        {
+            set force with 11/10 * force
+        }
+
     }
 
 ## Algorithm Description
@@ -101,6 +119,8 @@ https://github.com/SuiriusJ/Algodoo_Script/blob/master/gravitymass.txt
     3. If the power is working up, cancel the operation immediately before, and this time it will continue to add 100.
 
     4. In this way, add 10, 1, 0.1, 0.01, and calculate up to 0.01 to complete the weight measurement.
+
+    5. In case of that _trigger is zero, if vertical velocity is positive, Force decreases, on the other hand, if vertical velocity is negative, force increases.
 
 
 ## Custom Variables & Functions Description
@@ -119,4 +139,4 @@ https://github.com/SuiriusJ/Algodoo_Script/blob/master/gravitymass.txt
 
     * _trigger: Trigger and Phase
     
-    * _mass: Originally used to calculate mass, but not used now.
+    * _weight: Size of gravity of aircraft.
