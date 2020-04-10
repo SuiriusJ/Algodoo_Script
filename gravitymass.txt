@@ -8,7 +8,7 @@ postStep := (e)=>{
         _TimerSet({
             _timer = 2;
             _trigger = 2;
-            _TenExp = 3
+            _TenExp = 6
         })
     } : {
         _trigger == 2 ? {
@@ -25,7 +25,13 @@ postStep := (e)=>{
                     scene.my.autoforce = scene.my.autoforce + (10 ^ _TenExp)
                 }
             })
-        } : {}
+        } : {
+            _acc(1) > 0 ? {
+                scene.my.autoforce = _weight * 9 / 10
+            } : {
+                scene.my.autoforce = _weight * 11 / 10
+            }
+        }
     };
     _acc = (vel - _oldvel) * sim.frequency;
     _oldvel = vel
@@ -43,7 +49,7 @@ _TenExp := 3;
 _acc := [0,0];
 _oldvel := [0,0];
 _trigger := 0;
-_mass := 10;
+_weight := 10;
 /* Option
 inertiaMultiplier := +inf;
 */
